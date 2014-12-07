@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load url from future %}
+{% load thumbnail %}
+
+{% block css %}
+	<link rel="stylesheet" href="{{ STATIC_URL }}css/pages/base_imoveis.css">
+	<link rel="stylesheet" href="{{ STATIC_URL }}css/pages/imoveis.css">
+{% endblock css %}
+
+{% block main %}
+	<div class="grid-960">
+		<div class="top-bar">
+			<p class="text2">IMÓVEIS</p>
+		</div>
+	</div>
+
+	<div class="main-container">
+		<div class="imoveis-content">
+			<ul>
+				{% for i in imoveis %}
+					<li {% if forloop.counter|divisibleby:'5' or forloop.first %}class="no-margin"{% endif %}>
+						<a href="{% url 'imoveis:detalhes_imoveis' i.slug %}" class="expand link"></a>
+						{% if i.destaque %}
+							<div class="status">
+								<p class="text1">Destaque</p>
+							</div>
+						{% endif %}						
+						<div class="title">
+							<p class="text1">{{ i.titulo|upper }}</p>
+						</div>
+
+						{% thumbnail i.get_first_image.imagem "200x150" crop="center" upscale="true" as im %}
+							<img src="{{ im.url }}" alt="{{ i.titulo }}" title="{{ i.titulo }}">
+						{% endthumbnail %}
+
+						<div class="description">
+							<h2 class="text1">{{ i.get_status_display }}</h2>
+							<p class="text3">{{ i.bairro }} - {{ i.cidade }}</p>
+						</div>
+					</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+{% endblock main %}

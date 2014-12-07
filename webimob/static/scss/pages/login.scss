@@ -1,0 +1,113 @@
+@import "layout/colors";
+
+.login-bar{
+	width: 1440px;
+	background-color: $color_marrom;
+	height: 60px;
+	position: absolute;
+	margin-top: 40px;
+	right: 0;
+
+	p{
+		color: $color_branco;
+		line-height: 60px;
+		margin-right: 50px;
+		float: right;
+	}
+}
+
+.main-container{
+	width: 960px;
+	margin: 0 auto;
+	position: relative;
+
+	.main-contact{
+		width: 600px;
+		height: 200px;
+		background-color: $color_cinza;
+		margin-top: 140px;
+		float: right;
+		padding-bottom: 40px;
+		margin-bottom: 10px;	
+
+		.form{
+			width: 85%;
+			margin: 0 auto;
+
+			li{
+				list-style: none;
+				padding: 3px;
+				margin-bottom: 10px;
+
+				&:last-child{
+					margin-bottom: 0;
+				}
+
+				&:first-child{
+					padding-top: 40px;
+				}				
+			}
+
+			label{
+				float: left;
+				font-family: 'Lato',sans-serif;
+				font-size: 14px;
+				font-weight: 300;
+				margin-right: 6px;
+				margin-top: 8px;
+				text-align: right;
+				width: 216px;
+				display: none;			
+			}
+
+			input[type="text"], input[type="password"]{
+				width: 450px;
+				height: 25px; 
+				border: 1px solid $color_marrom;
+				background-color: $color_bege;
+				padding: 5px 13px;
+				font-family: Lato, Arial;
+				font-size: 14px;
+			}
+
+			label.error{
+				display: none !important;
+			}
+
+			input[type="text"].error, input[type="password"].error{
+				background: #FFE3E3;
+				border: 1px solid #BF7575 !important;
+			}
+			
+			.button input[type="submit"]{
+				width: 93.5%;
+				height: 38px; 
+				background-color: $color_marrom;
+				padding: 5px 13px;
+				font-size: 16px;
+				font-family: 'Lato', Arial;
+				color: $color_bege;
+				float: right;
+				margin-right: 29px;
+				margin-top: 18px;
+				margin-bottom: 18px;
+			}
+
+			.button input[type="submit"]:hover{
+				color: #fff;
+				background-color: $color_marrom_escuro;
+				cursor:pointer;
+			}
+
+			.loading {
+			    background: url("../../images/ajax-loader.gif") no-repeat scroll center center $color_marrom_escuro;
+			    height: 38px;
+			    position: relative;
+			    right: 29px;
+			    top: 18px;
+			    width: 93.5%;
+			    float: right;
+			}			
+		}
+	}
+}

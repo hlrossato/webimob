@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load url from future %}
+{% load thumbnail %}
+
+{% block css %}
+	<link rel="stylesheet" href="{{ STATIC_URL }}css/pages/base_empreendimentos.css">
+{% endblock css %}
+
+{% block main %}
+	<div class="grid-960">
+		<div class="top-bar">
+			<p class="text2">EMPREENDIMENTOS</p>
+		</div>
+	</div>
+
+	<div class="main-container">
+		<div class="empreendimento-content">
+			<ul>
+				{% for e in empreendimentos %}
+					<li {% if forloop.counter|divisibleby:'5' or forloop.first %}class="no-margin"{% endif %}>
+						<a href="{% url 'empreendimentos:detalhes_empreendimento' e.slug %}" class="expand link"></a>
+						<div class="title">
+							<p class="text1">{{ e.nome|upper }}</p>
+						</div>
+
+						{% thumbnail e.get_first_image.imagem "200x150" crop="center" upscale="true" as im %}
+							<img src="{{ im.url }}" alt="{{ e.nome }}" title="{{ e.nome }}">
+						{% endthumbnail %}
+
+						<div class="description">
+							<h2 class="text1">{{ e.get_status_display }}</h2>
+							<p class="text3">{{ e.bairro }} - {{ e.cidade }}</p>
+						</div>
+					</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+{% endblock main %}

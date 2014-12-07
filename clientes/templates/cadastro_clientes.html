@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load url from future %}
+
+{% block css %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/pages/global.css">
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/pages/cadastro_clientes.css">
+{% endblock css %}
+
+{% block js %}
+    <script src="{{ STATIC_URL }}js/plugins/jquery.mask.min.js"></script>
+    <script src="{{ STATIC_URL }}js/plugins/jquery.maskMoney.min.js"></script>
+    <script src="{{ STATIC_URL }}js/clientes.js"></script>
+{% endblock js %}
+
+{% block main %}
+	<div class="grid-960">
+	    <div class="top-bar">
+            <p class="text1 welcome">Bem Vindo(a), <b>{% if user.first_name %}{{ user.first_name|capfirst }}{% else %}{{ user.username|capfirst }}{% endif %}</b></p>
+            <a class="text1 voltar" href="{% url 'appsite:area_restrita' %}">Voltar</a>
+            <a class="text1" href="{% url 'appsite:logout' %}">Sair</a>	    	
+	        <p class="text2">CADASTRO CLIENTES</p>
+	    </div>
+	</div>
+
+	<div class="main-container">
+	    <div class="cadastro-cliente">
+	        <form action="{% url 'clientes:cadastro_clientes_send' %}" method="POST" class="form" id="formulario">
+	            {% csrf_token %}
+	            <input type="hidden" value="{{ cliente.id }}" name="c_id">
+	            <p class="text3">Campos com * são obrigatórios</p>
+	            <ul>
+	                {{ form.as_ul }}
+	            </ul>
+	            
+	            <div class="button">
+	                <div class="loading"></div>
+	                <input type="submit" value="ENVIAR" id="enviar" class="text1">
+	            </div>
+	        </form>     
+
+            <div class="msg-enviada text1">
+                <h2>SUA MENSAGEM FOI ENVIADA COM SUCESSO!</h2>
+            </div>	        
+	    </div>
+	</div>
+{% endblock main %}

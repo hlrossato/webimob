@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load url from future %}
+{% load thumbnail %}
+
+{% block css %}
+	<link rel="stylesheet" href="{{ STATIC_URL }}css/pages/empreendimentos.css">	
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/pages/global.css">
+{% endblock css %}
+
+{% block js %}
+	
+{% endblock js %}
+
+{% block main %}
+    <div class="grid-960">
+        <div class="area-restrita-bar">
+            <p class="text1 welcome">Bem Vindo(a), <b>{% if user.first_name %}{{ user.first_name|capfirst }}{% else %}{{ user.username|capfirst }}{% endif %}</b></p>
+            <a class="text1 voltar" href="{% url 'appsite:area_restrita' %}">Voltar</a>
+            <a class="text1" href="{% url 'appsite:logout' %}">Sair</a>
+            <p class="text2">ESPELHO VENDAS - {{ empreendimento.nome|upper }}</p>
+        </div>
+    </div>
+
+    <div class="main-container">
+    	<div class="espelho-vendas">
+            <div class='legendas'>
+                <ul class='legend-labels'>
+                    <li><span style='background:green;'></span>Livre</li>
+                    <li><span style='background:yellow;'></span>Reservado</li>
+                    <li><span style='background:red;'></span>Vendido</li>
+                </ul>
+            </div>
+            <ul>
+                {% for u in unidades %}
+                    <li class="unidades {% if forloop.counter|divisibleby:'9' %}no-margin {% endif %}{% if u.status == 1 %}livre{% elif u.status == 2 %}reservado{% else %}vendido{% endif %}">
+                        <a href="{% url 'empreendimentos:detalhes_unidade' empreendimento.slug u.slug  %}" class="expand link"></a>
+                        <p>{{ u.titulo }}</p>
+
+                        {% if u.status != 3 %}
+                            <div class="mais">
+                                {% if u.status != 2 %}
+                                    <a href="{% url 'empreendimentos:reservar_unidade' empreendimento.slug u.slug %}" class="fa fa-bookmark">  Reservar</a>
+                                {% endif %}
+                                <a href="{% url 'empreendimentos:comprar_unidade' empreendimento.slug u.slug %}" class="fa fa-money">  Comprar</a>
+                            </div>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+    	</div>
+    </div>	
+	
+{% endblock main %}

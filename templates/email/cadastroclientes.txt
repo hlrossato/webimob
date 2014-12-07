@@ -1,0 +1,55 @@
+--------------------------------------------------------------------------------
+WEBIMOB - CADASTRO CLIENTES
+--------------------------------------------------------------------------------
+
+Nome: {{ campo.nome }}
+E-mail: {{ campo.email }}
+Telefone: {{ campo.telefone }}
+{% if campo.celular %}
+Celular: {{ campo.celular }}
+{% endif %}
+Data de Nascimento: {{ campo.data_nascimento }}
+RG: {{ campo.rg }}
+CPF: {{ campo.cpf }}
+Endereço: {{ campo.endereco }}
+Cidade: {{ campo.cidade }}
+Estado: {{ campo.estado }}
+Profissão: {{ campo.get_profissao_display }}
+Faixa Salarial: {{ campo.faixa_salarial }}
+
+{% if campo.nome_conjuge %}
+# DADOS DO CONJUGE #
+
+Nome do Conjuge: {{ campo.nome_conjuge }}	
+{% endif %}
+{% if campo.endereco_conjuge %}
+Endereço do Conjuge: {{ campo.endereco_conjuge }}
+{% endif %}
+{% if campo.telefone_conjuge %}
+Telefone do Conjuge: {{ campo.telefone_conjuge }}	
+{% endif %}
+{% if campo.celular_conjuge %}
+Celular do Conjuge: {{ campo.celular_conjuge }}	
+{% endif %}
+{% if campo.data_nascimento_conjuge %}
+Data de Nascimento do Conjuge: {{ campo.data_nascimento_conjuge }}	
+{% endif %}
+{% if campo.rg_conjuge %}
+RG do Conjuge: {{ campo.rg_conjuge }}
+{% endif %}
+{% if campo.cpf_conjuge %}
+CPF do Conjuge:	{{ campo.cpf_conjuge }}
+{% endif %}
+{% if campo.profissao_conjuge %}
+Profissão do Conjuge: {{ campo.get_profissao_conjuge_display }}	
+{% endif %}
+{% if campo.filhos %}
+Possui Filhos: {{ campo.filhos }}	
+{% endif %}
+{% if campo.qtde_filhos %}
+Quantidade de filhos: {{ campo.qtde_filhos }}	
+{% endif %}
+
+
+--------------------------------------------------------------------------------
+E-mail enviado em {{ data|date:"d/m/Y" }} às {{ data|date:"H\hi" }}

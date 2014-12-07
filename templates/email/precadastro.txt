@@ -1,0 +1,12 @@
+--------------------------------------------------------------------------------
+WEBIMOB - PRÉ-CADASTRO
+--------------------------------------------------------------------------------
+
+Nome: {{ campo.nome }}
+E-mail: {{ campo.email }}
+Telefone: {{ campo.telefone }}
+{% if campo.celular %}Celular: {{ campo.celular }}{% endif %}
+Data de Nascimento: {{ campo.data_nascimento }}
+
+--------------------------------------------------------------------------------
+E-mail enviado em {{ data|date:"d/m/Y" }} às {{ data|date:"H\hi" }}

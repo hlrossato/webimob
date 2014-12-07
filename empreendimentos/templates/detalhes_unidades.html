@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% load url from future %}
+{% load thumbnail %}
+
+{% block css %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/pages/global.css">
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/pages/empreendimentos.css">
+{% endblock css %}
+
+{% block js %}
+    
+{% endblock js %}
+
+{% block main %}
+    <div class="grid-960">
+        <div class="area-restrita-bar">
+            {% if request.user.is_authenticated %}
+                <p class="text1 welcome">Bem Vindo(a), <b>{% if user.first_name %}{{ user.first_name|capfirst }}{% else %}{{ user.username|capfirst }}{% endif %}</b></p>
+                <a class="text1 voltar" href="{% url 'appsite:area_restrita' %}">Voltar</a>
+                <a class="text1" href="{% url 'appsite:logout' %}">Sair</a>
+            {% endif %}
+            <p class="text2">{{ empreendimento.nome|upper }} - {{ unidade.titulo|upper }}</p>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div class="unidade-content">
+            <div class="description">
+                <h1 class="text2">Descrição</h1>
+                {{ unidade.descricao|safe }}
+            </div>
+
+            <div class="metragem">
+                <h1 class="text2">Metragem</h1>
+                {{ unidade.metragem|safe }}
+            </div>
+
+            <div class="quartos">
+                <h1 class="text2">Quartos</h1>
+                {{ unidade.qtde_quartos }}
+            </div>
+
+            <div class="banheiros">
+                <h1 class="text2">Banheiros</h1>
+                {{ unidade.qtde_banheiros }}
+            </div>
+
+            {% if unidade.possui_suite == 'True' %}
+                <div class="suite">
+                    <h1 class="text2">Suites</h1>
+                    {{ unidade.qtde_suites }}
+                </div>
+            {% endif %}
+
+            {% if fotos %}
+                <div class="fotos">
+                    <h1 class="text2">Fotos</h1>
+                    <ul>
+                        {% for f in fotos %}
+                            <li>
+                                {% thumbnail f.imagem "180x130" crop="center" upscale="true" quality=90 as im %}
+                                    <img src="{{ im.url }}" alt="{{ f.legenda }}" title="{{ f.legenda }}">
+                                {% endthumbnail %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock main %}

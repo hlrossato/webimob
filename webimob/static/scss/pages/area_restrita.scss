@@ -1,0 +1,45 @@
+@import "layout/colors";
+
+.main-container{
+	width: 960px;
+	margin: 140px auto 10px;
+	position: relative;
+	min-height: 170px;
+
+	.restrita-content{
+		text-align: center;
+
+		.restrita-box{
+			background-color: $color_cinza;
+			width: 150px;
+			height: 150px;
+			border-radius: 3px;
+			float: left;
+			margin-right: 30px;
+			text-align: center;
+			position: relative;
+
+			&:last-child{
+				margin-right: 0;
+			}
+
+			i{
+				padding-top: 18px;
+			}
+
+			p{
+				display: none;
+			}
+
+			&:hover{
+				background-color: #333;
+				color: $color_branco;
+
+				p{
+					margin-top: 3px;
+					display: block;
+				}
+			}
+		}
+	}
+}

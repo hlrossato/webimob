@@ -1,0 +1,84 @@
+@import "compass/css3";
+
+@import "layout/fonts";
+@import "layout/mixins";
+@import "layout/functions";
+@import "layout/colors";
+
+@import "ceaser-easing/ceaser";
+
+
+.imovel-bar{
+	width: 1440px;
+	background-color: $color_marrom;
+	height: 60px;
+	position: absolute;
+	margin-top: 40px;
+	right: 0;
+
+	p{
+		color: $color_branco;
+		line-height: 60px;
+		margin-right: 50px;
+		float: right;
+	}
+}
+
+.no-margin{
+	margin-left: 0 !important;
+}
+
+.main-container{
+	width: 960px;
+	margin: 0 auto;
+	position: relative;
+
+	.imoveis-content{
+		width: 100%;
+		min-height: 400px;
+		background-color: $color_branco;
+		margin-top: 140px;
+
+		ul{
+			width: 100%;
+
+			li{
+				background-color: $color_cinza;
+				width: 219px;
+				height: 320px;
+				float: left;
+				margin-left: 27px;
+				margin-bottom: 27px;
+				position: relative;
+
+				.title{
+					height: 75px;
+					line-height: 75px;
+					
+					p{
+						text-align: center;
+					}
+				}
+
+				.description{
+					height: 75px;
+					padding-bottom: 18px;
+					padding-top: 18px;
+
+					h2, p{
+						text-align: center;
+						line-height: 18px;
+					}
+				}
+
+				img{
+					margin-left: 9px;;
+				}
+
+				h2{
+					text-align: center;
+				}
+			}
+		}
+	}
+}

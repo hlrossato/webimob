@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load url from future %}
+{% load thumbnail %}
+
+{% block css %}
+	<link rel="stylesheet" href="{{ STATIC_URL }}css/pages/global.css">
+	<link rel="stylesheet" href="{{ STATIC_URL }}css/pages/imoveis.css">
+{% endblock css %}
+
+{% block js %}
+	<script src="{{ STATIC_URL }}js/empreendimentos.js"></script>
+{% endblock js %}
+
+{% block main %}
+    <div class="grid-960">
+        <div class="area-restrita-bar">
+            <p class="text1 welcome">Bem Vindo(a), <b>{% if user.first_name %}{{ user.first_name|capfirst }}{% else %}{{ user.username|capfirst }}{% endif %}</b></p>
+            <a class="text1 voltar" href="{% url 'appsite:area_restrita' %}">Voltar</a>
+            <a class="text1" href="{% url 'appsite:logout' %}">Sair</a>
+            <p class="text2">AREA RESTRITA - IMÓVEIS</p>
+        </div>
+    </div>
+
+    <div class="main-container">
+		<div class="imoveis-content">
+			<ul>
+				{% for i in imoveis %}
+					<li class="list-empreendimento {% if forloop.counter|divisibleby:'5' or forloop.first %}no-margin{% endif %}">
+						{% if i.destaque %}
+							<div class="status">
+								<p class="text1">Destaque</p>
+							</div>
+						{% endif %}
+						<a href="{% url 'imoveis:detalhes_imoveis' i.slug %}" class="expand link"></a>							
+						<div class="title">
+							<p class="text1">{{ i.titulo }}</p>
+						</div>
+
+						{% thumbnail i.get_first_image.imagem "200x150" crop="center" quality=90 as im %}
+							<img src="{{ im.url }}" alt="{{ i.slug }}">
+						{% endthumbnail %}
+
+                        {% if i.status != 3 %}
+                            <div class="mais">
+                            	<input type="hidden" id="slug-{{ forloop.counter }}" name="slug" value="{{ i.slug }}">
+                            	{% if i.status != 2 %}
+                                	<a href="{% url 'imoveis:alugar' i.slug %}" class="fa fa-bookmark" id="alugar">  Alugar</a>
+                            	{% endif %}
+                                <a href="{% url 'imoveis:comprar' i.slug %}" class="fa fa-money" id="vender">  Comprar</a>
+                            </div>
+                        {% endif %}
+					</li>
+				{% endfor %}
+			</ul>
+
+            <div class="msg-enviada text4">
+                <h2>IMÓVEL ALUGADO COM SUCESSO!</h2>
+            </div>	
+
+            <div class="msg-enviada text4">
+                <h2>ERRO AO ALUGAR IMÓVEL! TENTE NOVAMENTE!</h2>
+            </div>            		
+		</div>    	
+    </div>
+{% endblock main %}

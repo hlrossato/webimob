@@ -1,0 +1,16 @@
+--------------------------------------------------------------------------------
+WEBIMOB - CONTATO
+--------------------------------------------------------------------------------
+
+Assunto: {{ campo.assunto }}
+Nome: {{ campo.nome }}
+E-mail: {{ campo.email }}
+{% if campo.telefone %}
+Telefone: {{ campo.telefone }}        
+{% endif %}
+Mensagem: 
+{{ campo.mensagem }}
+
+
+--------------------------------------------------------------------------------
+E-mail enviado em {{ data|date:"d/m/Y" }} às {{ data|date:"H\hi" }}

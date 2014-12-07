@@ -1,0 +1,22 @@
+# OSX
+.DS_Store
+.AppleDouble
+
+# Windows
+thumbs.db
+
+# Python / uWSGI
+*.pyc
+*.pyo*
+.pip-log.txt
+
+# Middleman
+.sass-cache
+
+# Django / APP
+webimob/local_settings.py
+webimob/static/css/*
+
+# SASS generated CSS
+webimob/static/css
+webimob/static/CACHE

@@ -1,0 +1,26 @@
+@import "layout/colors";
+
+#container-reservado{
+    width: 500px;
+    height: 500px;
+    left: 50%;
+    top: 50%;
+    margin-left: -250px;
+    margin-top: -250px;
+    position: absolute;
+    background-color: #664840;
+}
+
+h1 {
+    color: #FFFFFF;
+    font-family: Lato, Arial;
+    font-size: 28px;
+    height: 40px;
+    left: 50%;
+    margin-left: -185px;
+    margin-top: -20px;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    width: 370px;
+}

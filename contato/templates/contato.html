@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load url from future %}
+
+{% block css %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/pages/global.css">
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/pages/contato.css">
+{% endblock css %}
+
+{% block js %}
+    <script src="{{ STATIC_URL }}js/contato.js"></script>
+{% endblock js %}
+
+{% block main %}
+<div class="grid-960">
+    <div class="top-bar">
+        <p class="text2">CONTATO</p>
+    </div>
+</div>
+
+<div class="main-container">
+    <div class="main-contact">
+        <form action="{% url 'contato:contato_send' %}" method="POST" class="form" id="formulario">
+            {% csrf_token %}
+            <ul>
+                {{ form.as_ul }}
+            </ul>
+            
+            <div class="button">
+                <div class="loading"></div>
+                <input type="submit" value="ENVIAR" id="enviar" class="text1">
+            </div>
+
+            <div class="info-captcha">
+                <p class="text3">DIGITE AS LETRAS CONFORME SÃO MOSTRADAS NA IMAGEM ACIMA. AS LETRAS NÃO DIFERENCIAM MAIUSCULA E MINÚSCULA. <br> CASO A IMAGEM ESTEJA ILEGÍVEL? <a href="javascript:alteraCaptcha();">CLIQUE AQUI!</a></p>      
+            </div>
+            
+            <div class="msg-enviada text4">
+                <h2>SUA MENSAGEM FOI ENVIADA COM SUCESSO!</h2>
+            </div>          
+        </form>     
+    </div>
+</div>    
+{% endblock main %}
